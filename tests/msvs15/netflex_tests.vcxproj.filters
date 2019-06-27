@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\http\client_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\http\header_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\http\method_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\http\request_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\http\response_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\http\server_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\misc\error_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\misc\logger_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\misc\output_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\header_field_parser_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\header_fields_parser_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\message_body_chuncked_parser_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\message_body_compress_parser_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\message_body_content_length_parser_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\message_body_deflate_parser_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\message_body_gzip_parser_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\message_body_parser_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\parser_iface_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\parsers_factory_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\request_parser_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\start_line_parser_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\parsing\utils_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\routing\middleware_chain_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\routing\params_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\routing\route_matcher_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tests\sources\spec\routing\route_spec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\github\NetFlex\tests\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{25C7961E-6A33-3D21-876D-8D0C9DE350AC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

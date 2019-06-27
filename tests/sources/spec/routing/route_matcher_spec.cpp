@@ -31,7 +31,7 @@
 class test_route_matcher : public netflex::routing::route_matcher {
 public:
   //! ctor
-  test_route_matcher(const std::string& path)
+  explicit test_route_matcher(const std::string& path)
   : netflex::routing::route_matcher(path) {}
 
   //! getters, mostly for testing purpose
@@ -59,8 +59,8 @@ public:
 };
 
 //! regex constants
-static const std::string PATH_REGEX_MATCH_SUFIX = "/?((\\?([^=]+)=([^&\\#]*))(&([^=]+)=([^&\\#]*))*)?(\\#.*)*";
-static const std::string PATH_REGEX_VAR_MATCH   = "/([a-zA-Z0-9_\\-]+)";
+static const std::string &PATH_REGEX_MATCH_SUFIX = "/?((\\?([^=]+)=([^&\\#]*))(&([^=]+)=([^&\\#]*))*)?(\\#.*)*";
+static const std::string &PATH_REGEX_VAR_MATCH   = "/([a-zA-Z0-9_\\-]+)";
 
 //!
 //! match
@@ -179,7 +179,8 @@ TEST(match, match_complex) {
   test_route_matcher matcher("/users/:user_id/articles/:article_id/comments/:comment_id/author");
 
   netflex::routing::params_t params;
-  EXPECT_EQ(matcher.match("/users/42/articles/84/comments/21/author?user_id=1&source=google&test=#anchor", params), true);
+  EXPECT_EQ(matcher.match("/users/42/articles/84/comments/21/author?user_id=1&source=google&test=#anchor", params),
+      true);
 
   EXPECT_EQ(params.size(), 5UL);
   EXPECT_EQ(params["user_id"], "1");
@@ -272,7 +273,8 @@ TEST(route_matcher, build_match_regex_multi_variables) {
   test_route_matcher matcher("");
 
   matcher.test_build_match_regex("/users/:user_id/articles/:article_id/comments/:comment_id/author");
-  EXPECT_EQ(matcher.get_match_regex_str(), "/users" + PATH_REGEX_VAR_MATCH + "/articles" + PATH_REGEX_VAR_MATCH + "/comments" + PATH_REGEX_VAR_MATCH + "/author" + PATH_REGEX_MATCH_SUFIX);
+  EXPECT_EQ(matcher.get_match_regex_str(), "/users" + PATH_REGEX_VAR_MATCH + "/articles" + PATH_REGEX_VAR_MATCH +
+      "/comments" + PATH_REGEX_VAR_MATCH + "/author" + PATH_REGEX_MATCH_SUFIX);
   EXPECT_EQ(matcher.get_url_params().size(), 3UL);
   EXPECT_EQ(matcher.get_url_params()[0], "user_id");
   EXPECT_EQ(matcher.get_url_params()[1], "article_id");

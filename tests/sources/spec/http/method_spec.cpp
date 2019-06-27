@@ -34,7 +34,7 @@ TEST(method, method_from_string) {
   EXPECT_EQ(netflex::http::method_from_string("POST"), netflex::http::method::POST);
   EXPECT_EQ(netflex::http::method_from_string("PUT"), netflex::http::method::PUT);
   EXPECT_EQ(netflex::http::method_from_string("PATCH"), netflex::http::method::PATCH);
-  EXPECT_EQ(netflex::http::method_from_string("DELETE"), netflex::http::method::DELETE);
+  EXPECT_EQ(netflex::http::method_from_string("DELETE"), netflex::http::method::DELETE_);
   EXPECT_EQ(netflex::http::method_from_string("TRACE"), netflex::http::method::TRACE);
   EXPECT_EQ(netflex::http::method_from_string("CONNECT"), netflex::http::method::CONNECT);
   EXPECT_EQ(netflex::http::method_from_string("YOLO"), netflex::http::method::unknown);
@@ -51,7 +51,7 @@ TEST(method, method_to_string) {
   EXPECT_EQ(netflex::http::method_to_string(netflex::http::method::POST), "POST");
   EXPECT_EQ(netflex::http::method_to_string(netflex::http::method::PUT), "PUT");
   EXPECT_EQ(netflex::http::method_to_string(netflex::http::method::PATCH), "PATCH");
-  EXPECT_EQ(netflex::http::method_to_string(netflex::http::method::DELETE), "DELETE");
+  EXPECT_EQ(netflex::http::method_to_string(netflex::http::method::DELETE_), "DELETE");
   EXPECT_EQ(netflex::http::method_to_string(netflex::http::method::TRACE), "TRACE");
   EXPECT_EQ(netflex::http::method_to_string(netflex::http::method::CONNECT), "CONNECT");
   EXPECT_EQ(netflex::http::method_to_string(netflex::http::method::unknown), "");

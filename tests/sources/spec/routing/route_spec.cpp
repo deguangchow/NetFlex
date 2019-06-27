@@ -81,7 +81,8 @@ TEST(route, match_multi_variable) {
   request.set_target("/users/42/articles/84/comments/21/author");
   request.set_method(netflex::http::method::GET);
 
-  netflex::routing::route route(netflex::http::method::GET, "/users/:user_id/articles/:article_id/comments/:comment_id/author", nullptr);
+  netflex::routing::route route(netflex::http::method::GET,
+      "/users/:user_id/articles/:article_id/comments/:comment_id/author", nullptr);
   EXPECT_EQ(route.match(request), true);
 
   netflex::routing::params_t params = request.get_params();
@@ -191,7 +192,8 @@ TEST(route, match_complex) {
   request.set_target("/users/42/articles/84/comments/21/author?user_id=1&source=google&test=#anchor");
   request.set_method(netflex::http::method::GET);
 
-  netflex::routing::route route(netflex::http::method::GET, "/users/:user_id/articles/:article_id/comments/:comment_id/author", nullptr);
+  netflex::routing::route route(netflex::http::method::GET,
+      "/users/:user_id/articles/:article_id/comments/:comment_id/author", nullptr);
   EXPECT_EQ(route.match(request), true);
 
   netflex::routing::params_t params = request.get_params();
@@ -263,7 +265,8 @@ TEST(route, match_empty_variable_unmatch_missing_end) {
 //! dispatch
 //!
 TEST(route, dispatch) {
-  netflex::routing::route route(netflex::http::method::GET, "", [](const netflex::http::request& request, netflex::http::response& response) {
+  netflex::routing::route route(netflex::http::method::GET, "", [](const netflex::http::request& request,
+      netflex::http::response& response) {
     EXPECT_EQ(request.get_body(), "0");
     EXPECT_EQ(response.get_body(), "0");
   });

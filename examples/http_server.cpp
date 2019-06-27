@@ -21,10 +21,12 @@
 // SOFTWARE.
 
 #include <netflex/netflex>
+#include <tacopie/tacopie>
 
 #include <condition_variable>
 #include <csignal>
 #include <iostream>
+#include <signal.h>
 
 #ifdef _WIN32
 #include <Winsock2.h>
@@ -75,7 +77,8 @@ main(void) {
     }});
 
   //! optional middlewares
-  server.add_middleware([](netflex::routing::middleware_chain& chain, netflex::http::request& request, netflex::http::response& response) {
+  server.add_middleware([](netflex::routing::middleware_chain& chain, netflex::http::request& request,
+      netflex::http::response& response) {
     //! alter request
     request.add_header({"MiddleWare-Custom-Header", "MiddleWare custom header value"});
 

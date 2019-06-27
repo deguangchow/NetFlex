@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -74,7 +74,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\includes;..\..\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /bigobj /bigobj</AdditionalOptions>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -83,7 +83,7 @@
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -121,7 +121,8 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
       <ProgramDataBaseFileName>F:\github\NetFlex\msvc15\lib\Release\tacopie.pdb</ProgramDataBaseFileName>
     </ClCompile>
     <ResourceCompile>
@@ -155,7 +156,8 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
       <ProgramDataBaseFileName>F:\github\NetFlex\msvc15\lib\MinSizeRel\tacopie.pdb</ProgramDataBaseFileName>
     </ClCompile>
     <ResourceCompile>
@@ -265,32 +267,32 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="F:\github\NetFlex\sources\http\client.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\http\header.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\http\method.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\http\request.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\http\response.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\http\server.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\misc\logger.cpp" >
+    <ClCompile Include="F:\github\NetFlex\sources\http\client.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\http\header.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\http\method.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\http\request.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\http\response.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\http\server.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\misc\logger.cpp">
       <ObjectFileName>$(IntDir)/__/sources/misc/logger.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="F:\github\NetFlex\sources\misc\output.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\header_field_parser.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\header_fields_parser.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_chuncked_parser.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_compress_parser.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_content_length_parser.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_deflate_parser.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_gzip_parser.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_parser.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\parser_iface.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\parsers_factory.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\request_parser.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\start_line_parser.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\parsing\utils.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\routing\middleware_chain.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\routing\route.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\sources\routing\route_matcher.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\misc\output.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\header_field_parser.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\header_fields_parser.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_chuncked_parser.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_compress_parser.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_content_length_parser.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_deflate_parser.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_gzip_parser.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_parser.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\parser_iface.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\parsers_factory.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\request_parser.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\start_line_parser.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\utils.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\routing\middleware_chain.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\routing\route.cpp" />
+    <ClCompile Include="F:\github\NetFlex\sources\routing\route_matcher.cpp" />
     <ClInclude Include="F:\github\NetFlex\includes\netflex\http\client.hpp" />
     <ClInclude Include="F:\github\NetFlex\includes\netflex\http\header.hpp" />
     <ClInclude Include="F:\github\NetFlex\includes\netflex\http\method.hpp" />
@@ -317,15 +319,15 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="F:\github\NetFlex\includes\netflex\routing\params.hpp" />
     <ClInclude Include="F:\github\NetFlex\includes\netflex\routing\route.hpp" />
     <ClInclude Include="F:\github\NetFlex\includes\netflex\routing\route_matcher.hpp" />
-    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\io_service.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\tcp_client.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\tcp_server.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\common\tcp_socket.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\tacopie\sources\utils\error.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\tacopie\sources\utils\logger.cpp" >
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\io_service.cpp" />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\tcp_client.cpp" />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\tcp_server.cpp" />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\common\tcp_socket.cpp" />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\utils\error.cpp" />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\utils\logger.cpp">
       <ObjectFileName>$(IntDir)/sources/utils/logger.cpp.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="F:\github\NetFlex\tacopie\sources\utils\thread_pool.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\utils\thread_pool.cpp" />
     <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\network\io_service.hpp" />
     <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\network\self_pipe.hpp" />
     <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\network\tcp_client.hpp" />
@@ -335,8 +337,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\utils\logger.hpp" />
     <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\utils\thread_pool.hpp" />
     <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\utils\typedefs.hpp" />
-    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\windows\windows_self_pipe.cpp"  />
-    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\windows\windows_tcp_socket.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\windows\windows_self_pipe.cpp" />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\windows\windows_tcp_socket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="F:\github\NetFlex\msvc15\ZERO_CHECK.vcxproj">

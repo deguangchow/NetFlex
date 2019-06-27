@@ -13,8 +13,8 @@ python tools/ci/cpplint.py --filter=\
     --linelength=120 \
 	$(find includes/ -name "*.hpp") \
 	$(find sources/ -name "*.cpp") \
-	#$(find examples/ -maxdepth 1 -name "*.cpp") \
-	#$(find tests/sources/ -name "*.cpp") \
+	$(find examples/ -maxdepth 1 -name "*.cpp") \
+	$(find tests/sources/ -name "*.cpp") \
     > $LOG_FILE
 
 echo "===================== cpplint end  ====================="

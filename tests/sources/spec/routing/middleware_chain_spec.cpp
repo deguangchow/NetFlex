@@ -28,7 +28,8 @@ TEST(middleware_chain, proceed) {
   std::list<netflex::routing::middleware_t> middlewares;
 
   //! 1st middleware (lower level)
-  middlewares.push_back([](netflex::routing::middleware_chain& chain, netflex::http::request& request, netflex::http::response& response) {
+  middlewares.push_back([](netflex::routing::middleware_chain& chain, netflex::http::request& request,
+      netflex::http::response& response) {
     //! check previous values have been forwarded
     EXPECT_EQ(request.get_body(), "0");
     EXPECT_EQ(response.get_body(), "0");
@@ -46,7 +47,8 @@ TEST(middleware_chain, proceed) {
   });
 
   //! 2st middleware (mid level)
-  middlewares.push_back([](netflex::routing::middleware_chain& chain, netflex::http::request& request, netflex::http::response& response) {
+  middlewares.push_back([](netflex::routing::middleware_chain& chain, netflex::http::request& request,
+      netflex::http::response& response) {
     //! check previous values have been forwarded
     EXPECT_EQ(request.get_body(), "1");
     EXPECT_EQ(response.get_body(), "1");
@@ -64,7 +66,8 @@ TEST(middleware_chain, proceed) {
   });
 
   //! 3rd middleware (higher level)
-  middlewares.push_back([](netflex::routing::middleware_chain& chain, netflex::http::request& request, netflex::http::response& response) {
+  middlewares.push_back([](netflex::routing::middleware_chain& chain, netflex::http::request& request,
+      netflex::http::response& response) {
     //! check previous values have been forwarded
     EXPECT_EQ(request.get_body(), "2");
     EXPECT_EQ(response.get_body(), "2");
@@ -104,7 +107,8 @@ TEST(middleware_chain, proceed_with_broken_chain) {
   std::list<netflex::routing::middleware_t> middlewares;
 
   //! 1st middleware (lower level)
-  middlewares.push_back([](netflex::routing::middleware_chain& chain, netflex::http::request& request, netflex::http::response& response) {
+  middlewares.push_back([](netflex::routing::middleware_chain& chain, netflex::http::request& request,
+      netflex::http::response& response) {
     //! check previous values have been forwarded
     EXPECT_EQ(request.get_body(), "0");
     EXPECT_EQ(response.get_body(), "0");
@@ -122,7 +126,8 @@ TEST(middleware_chain, proceed_with_broken_chain) {
   });
 
   //! 2st middleware (mid level)
-  middlewares.push_back([](netflex::routing::middleware_chain&, netflex::http::request& request, netflex::http::response& response) {
+  middlewares.push_back([](netflex::routing::middleware_chain&, netflex::http::request& request,
+      netflex::http::response& response) {
     //! check previous values have been forwarded
     EXPECT_EQ(request.get_body(), "1");
     EXPECT_EQ(response.get_body(), "1");
