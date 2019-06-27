@@ -75,22 +75,22 @@ private:
   //!
   //! middlewares
   //!
-  std::list<middleware_t> m_middlewares;
+  std::list<middleware_t>           m_lstMiddlewares;
 
   //!
   //! request to propagate
   //!
-  http::request& m_request;
+  http::request&                    m_httpRequest;
 
   //!
   //! response to propagate
   //!
-  http::response& m_response;
+  http::response&                   m_httpResponse;
 
   //!
   //! current middleware to execute
   //!
-  std::list<middleware_t>::iterator m_current_middleware;
+  std::list<middleware_t>::iterator m_posCurrentMiddleware;
 };
 
 } // namespace routing

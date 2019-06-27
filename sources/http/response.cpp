@@ -31,9 +31,9 @@ namespace http {
 //! ctor & dtor
 //!
 response::response(void)
-: m_http_version("HTTP/1.1")
-, m_status(200)
-, m_reason("OK") {}
+: m_sHttpVersion("HTTP/1.1")
+, m_uStatusCode(200)
+, m_sReason("OK") {}
 
 
 //!
@@ -41,8 +41,8 @@ response::response(void)
 //!
 std::string
 response::to_http_packet(void) const {
-  return misc::status_line_to_http_packet(m_http_version, m_status, m_reason) +
-      misc::header_list_to_http_packet(m_headers) + m_body;
+  return misc::status_line_to_http_packet(m_sHttpVersion, m_uStatusCode, m_sReason) +
+      misc::header_list_to_http_packet(m_mapHeaders) + m_sBody;
 }
 
 
@@ -51,32 +51,32 @@ response::to_http_packet(void) const {
 //!
 const std::string&
 response::get_http_version(void) const {
-  return m_http_version;
+  return m_sHttpVersion;
 }
 
 unsigned int
 response::get_status_code(void) const {
-  return m_status;
+  return m_uStatusCode;
 }
 
 const std::string&
 response::get_reason_phase(void) const {
-  return m_reason;
+  return m_sReason;
 }
 
 void
 response::set_http_version(const std::string& version) {
-  m_http_version = version;
+  m_sHttpVersion = version;
 }
 
 void
 response::set_status_code(unsigned int code) {
-  m_status = code;
+  m_uStatusCode = code;
 }
 
 void
 response::set_reason_phrase(const std::string& reason) {
-  m_reason = reason;
+  m_sReason = reason;
 }
 
 
@@ -85,17 +85,17 @@ response::set_reason_phrase(const std::string& reason) {
 //!
 const header_list_t&
 response::get_headers(void) const {
-  return m_headers;
+  return m_mapHeaders;
 }
 
 void
 response::add_header(const header& header) {
-  m_headers[header.field_name] = header.field_value;
+  m_mapHeaders[header.field_name] = header.field_value;
 }
 
 void
 response::set_headers(const header_list_t& headers) {
-  m_headers = headers;
+  m_mapHeaders = headers;
 }
 
 
@@ -104,12 +104,12 @@ response::set_headers(const header_list_t& headers) {
 //!
 const std::string&
 response::get_body(void) const {
-  return m_body;
+  return m_sBody;
 }
 
 void
 response::set_body(const std::string& body) {
-  m_body = body;
+  m_sBody = body;
 }
 
 } // namespace http

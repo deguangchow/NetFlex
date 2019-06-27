@@ -30,10 +30,10 @@ namespace routing {
 //! ctor & dtor
 //!
 route::route(http::method m, const std::string& path, const route_callback_t& callback)
-: m_method(m)
-, m_path(path)
-, m_callback(callback)
-, m_matcher(path) {}
+: m_eHttpMethod(m)
+, m_sPath(path)
+, m_callbackRoute(callback)
+, m_routeMatcher(path) {}
 
 
 //!
@@ -42,16 +42,16 @@ route::route(http::method m, const std::string& path, const route_callback_t& ca
 bool
 route::match(http::request& request) const {
   //! no method matching, return
-  if (request.get_method() != m_method)
+  if (request.get_method() != m_eHttpMethod)
     return false;
 
   //! no path matching, return
-  params_t params;
-  if (!m_matcher.match(request.get_target(), params))
+  params_t mapParams;
+  if (!m_routeMatcher.match(request.get_target(), mapParams))
     return false;
 
-  request.set_path(m_path);
-  request.set_params(params);
+  request.set_path(m_sPath);
+  request.set_params(mapParams);
 
   return true;
 }
@@ -62,8 +62,8 @@ route::match(http::request& request) const {
 //!
 void
 route::dispatch(const http::request& request, http::response& response) const {
-  if (m_callback)
-    m_callback(request, response);
+  if (m_callbackRoute)
+    m_callbackRoute(request, response);
 }
 
 } // namespace routing

@@ -88,18 +88,18 @@ protected:
   //!
   //! matching regex (string object)
   //!
-  std::string m_match_regex_str;
+  std::string               m_strMatchRegex;
 
   //!
   //! matching regex (regex object)
   //!
-  std::regex m_match_regex;
+  std::regex                m_regexMatch;
 
   //!
   //! url params to match, in order of appearance
   //! for example, for route /articles/:id/author/:name, this would be {id, name}
   //!
-  std::vector<std::string> m_url_params;
+  std::vector<std::string>  m_vctURLParams;
 };
 
 } // namespace routing

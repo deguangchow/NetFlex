@@ -173,22 +173,22 @@ private:
   //!
   //! underlying tcp server
   //!
-  tacopie::tcp_server m_tcp_server;
+  tacopie::tcp_server               m_tcpServer;
 
   //!
   //! server routes
   //!
-  std::vector<routing::route> m_routes;
+  std::vector<routing::route>       m_vctRoutes;
 
   //!
   //! server middlewares
   //!
-  std::list<routing::middleware_t> m_middlewares;
+  std::list<routing::middleware_t>  m_lstMiddlewares;
 
   //!
   //! clients
   //!
-  std::list<client> m_clients;
+  std::list<client>                 m_lstClients;
 };
 
 } // namespace http

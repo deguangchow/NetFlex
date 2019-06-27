@@ -129,27 +129,27 @@ private:
   //!
   //! response http version
   //!
-  std::string m_http_version;
+  std::string       m_sHttpVersion;
 
   //!
   //! response status code
   //!
-  unsigned int m_status;
+  unsigned int      m_uStatusCode;
 
   //!
   //! response reason phrase
   //!
-  std::string m_reason;
+  std::string       m_sReason;
 
   //!
   //! response headers
   //!
-  header_list_t m_headers;
+  header_list_t     m_mapHeaders;
 
   //!
   //! response body
   //!
-  std::string m_body;
+  std::string       m_sBody;
 };
 
 } // namespace http

@@ -32,7 +32,7 @@ namespace http {
 //!
 server::server(void)
 //! insert first middleware (dispatch)
-: m_middlewares({1, std::bind(&server::dispatch, this, std::placeholders::_1, std::placeholders::_2,
+: m_lstMiddlewares({1, std::bind(&server::dispatch, this, std::placeholders::_1, std::placeholders::_2,
     std::placeholders::_3)}) {}
 
 
@@ -41,19 +41,19 @@ server::server(void)
 //!
 server&
 server::add_route(const routing::route& route) {
-  m_routes.push_back(route);
+  m_vctRoutes.push_back(route);
   return *this;
 }
 
 server&
 server::add_routes(const std::vector<routing::route>& routes) {
-  m_routes.insert(m_routes.end(), routes.begin(), routes.end());
+  m_vctRoutes.insert(m_vctRoutes.end(), routes.begin(), routes.end());
   return *this;
 }
 
 server&
 server::set_route(const std::vector<routing::route>& routes) {
-  m_routes = routes;
+  m_vctRoutes = routes;
   return *this;
 }
 
@@ -64,7 +64,7 @@ server::set_route(const std::vector<routing::route>& routes) {
 server&
 server::add_middleware(const routing::middleware_t& middleware) {
   //! insert all middlewares after the user defined middlewares, but always before the dispatch middleware
-  m_middlewares.insert(std::prev(m_middlewares.end()), middleware);
+  m_lstMiddlewares.insert(std::prev(m_lstMiddlewares.end()), middleware);
 
   return *this;
 }
@@ -72,7 +72,7 @@ server::add_middleware(const routing::middleware_t& middleware) {
 server&
 server::add_middlewares(const std::list<routing::middleware_t>& middlewares) {
   //! insert all middlewares after the user defined middlewares, but always before the dispatch middleware
-  m_middlewares.insert(std::prev(m_middlewares.end()), middlewares.begin(), middlewares.end());
+  m_lstMiddlewares.insert(std::prev(m_lstMiddlewares.end()), middlewares.begin(), middlewares.end());
 
   return *this;
 }
@@ -80,10 +80,10 @@ server::add_middlewares(const std::list<routing::middleware_t>& middlewares) {
 server&
 server::set_middlewares(const std::list<routing::middleware_t>& middlewares) {
   //! erase all middlewares except the dispatch one
-  m_middlewares.erase(m_middlewares.begin(), std::prev(m_middlewares.end()));
+  m_lstMiddlewares.erase(m_lstMiddlewares.begin(), std::prev(m_lstMiddlewares.end()));
 
   //! insert all middlewares after the user defined middlewares, but always before the dispatch middleware
-  m_middlewares.insert(std::prev(m_middlewares.end()), middlewares.begin(), middlewares.end());
+  m_lstMiddlewares.insert(std::prev(m_lstMiddlewares.end()), middlewares.begin(), middlewares.end());
 
   return *this;
 }
@@ -97,7 +97,7 @@ server::start(const std::string& host, unsigned int port) {
   __NETFLEX_LOG(info, "starting server on " + __NETFLEX_HOST_PORT_LOG(host, port));
   //! TODO: debug log of loaded routes.
 
-  m_tcp_server.start(host, port, std::bind(&server::on_connection_received, this, std::placeholders::_1));
+  m_tcpServer.start(host, port, std::bind(&server::on_connection_received, this, std::placeholders::_1));
 
   __NETFLEX_LOG(info, "server running on " + __NETFLEX_HOST_PORT_LOG(host, port));
 }
@@ -105,7 +105,7 @@ server::start(const std::string& host, unsigned int port) {
 void
 server::stop(void) {
   __NETFLEX_LOG(info, "stopping server");
-  m_tcp_server.stop();
+  m_tcpServer.stop();
   __NETFLEX_LOG(info, "server stopped");
 }
 
@@ -118,10 +118,10 @@ server::on_connection_received(const std::shared_ptr<tacopie::tcp_client>& clien
   __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(client->get_host(), client->get_port()) + "receiving connection");
 
   //! store client
-  m_clients.emplace_back(client);
+  m_lstClients.emplace_back(client);
 
   //! start listening for incoming requests
-  client_iterator_t http_client = std::prev(m_clients.end());
+  client_iterator_t http_client = std::prev(m_lstClients.end());
   http_client->set_disconnection_handler(std::bind(&server::on_client_disconnected, this, http_client));
   http_client->set_request_handler(std::bind(&server::on_http_request_received, this, std::placeholders::_1,
       std::placeholders::_2, http_client));
@@ -141,7 +141,7 @@ server::on_http_request_received(bool success, request& request, client_iterator
   if (!success) {
     __NETFLEX_LOG(warn, __NETFLEX_CLIENT_LOG_PREFIX(client->get_host(), client->get_port()) + "invalid request");
 
-    m_clients.erase(client);
+    m_lstClients.erase(client);
     return;
   }
 
@@ -157,7 +157,7 @@ server::on_http_request_received(bool success, request& request, client_iterator
   response.add_header({"Content-Type", "text/html"});
 
   //! middleware chain, including dispatch
-  routing::middleware_chain chain(m_middlewares, request, response);
+  routing::middleware_chain chain(m_lstMiddlewares, request, response);
   chain.proceed();
 
   client->send_response(response);
@@ -167,7 +167,7 @@ void
 server::on_client_disconnected(client_iterator_t client) {
   __NETFLEX_LOG(info, __NETFLEX_CLIENT_LOG_PREFIX(client->get_host(), client->get_port()) + "client disconnected");
 
-  m_clients.erase(client);
+  m_lstClients.erase(client);
 }
 
 
@@ -177,7 +177,7 @@ server::on_client_disconnected(client_iterator_t client) {
 void
 server::dispatch(routing::middleware_chain&, http::request& request, http::response& response) {
   //! find route matching
-  for (const auto& route : m_routes) {
+  for (const auto& route : m_vctRoutes) {
     if (route.match(request)) {
       route.dispatch(request, response);
       return;
@@ -199,7 +199,7 @@ server::dispatch(routing::middleware_chain&, http::request& request, http::respo
 //!
 bool
 server::is_running(void) const {
-  return m_tcp_server.is_running();
+  return m_tcpServer.is_running();
 }
 
 } // namespace http

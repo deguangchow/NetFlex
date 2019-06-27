@@ -38,24 +38,24 @@ route_matcher::route_matcher(const std::string& path) {
 //! build matching regex
 //!
 void
-route_matcher::build_match_regex(const std::string& path) {
+route_matcher::build_match_regex(const std::string& sPath) {
   //! match var1 in /abc/:var1/def
-  std::regex find_url_params_regex("/:([a-zA-Z0-9_\\-]+)");
-  std::smatch sm;
+  std::regex regexFindURLParams("/:([a-zA-Z0-9_\\-]+)");
+  std::smatch smatchData;
 
-  auto params_it  = std::sregex_iterator(path.cbegin(), path.cend(), find_url_params_regex);
-  auto params_end = std::sregex_iterator();
+  auto posMatched       = std::sregex_iterator(sPath.cbegin(), sPath.cend(), regexFindURLParams);
+  auto const& posEnd    = std::sregex_iterator();
 
-  while (params_it != params_end) {
-    auto param = params_it->str();
+  while (posMatched != posEnd) {
+    auto param = posMatched->str();
 
-    if (!std::regex_match(param, sm, find_url_params_regex))
+    if (!std::regex_match(param, smatchData, regexFindURLParams))
       continue;
 
     //! sm is [/:var, var]
-    m_url_params.push_back(sm[1]);
+    m_vctURLParams.push_back(smatchData[1]);
 
-    ++params_it;
+    ++posMatched;
   }
 
   //! transform /abc/:var1/def into /abc/([a-zA-Z0-9]*)/def to match url params values
@@ -68,9 +68,9 @@ route_matcher::build_match_regex(const std::string& path) {
   //!    > (\\?([^=]+)=([^&\\#]*)) ==> match first ?var=val
   //!    > (&([^=]+)=([^&\\#]*))*)?(\\#.*)? ==> match subsequent &var=val
   //!  > (\\#.*)? ==> match #comments
-  m_match_regex_str = std::regex_replace(path, find_url_params_regex,
+  m_strMatchRegex = std::regex_replace(sPath, regexFindURLParams,
       std::string("/([a-zA-Z0-9_\\-]+)")) + "/?((\\?([^=]+)=([^&\\#]*))(&([^=]+)=([^&\\#]*))*)?(\\#.*)*";
-  m_match_regex     = std::regex(m_match_regex_str);
+  m_regexMatch     = std::regex(m_strMatchRegex);
 }
 
 
@@ -78,40 +78,40 @@ route_matcher::build_match_regex(const std::string& path) {
 //! matching
 //!
 bool
-route_matcher::match(const std::string& path, params_t& params) const {
-  std::smatch sm;
+route_matcher::match(const std::string& sPath, params_t& mapParams) const {
+  std::smatch smatchData;
 
-  if (!std::regex_match(path, sm, m_match_regex))
+  if (!std::regex_match(sPath, smatchData, m_regexMatch))
     return false;
 
   //! expected url params are in sm[1..m_url_params.size()]
-  for (size_t i = 1; i <= m_url_params.size(); ++i)
-    params[m_url_params[i - 1]] = sm[i];
+  for (size_t i = 1; i <= m_vctURLParams.size(); ++i)
+    mapParams[m_vctURLParams[i - 1]] = smatchData[i];
 
   //! sm[m_url_params.size() + 1] contains get_params
-  match_get_params(sm[m_url_params.size() + 1], params);
+  match_get_params(smatchData[m_vctURLParams.size() + 1], mapParams);
 
   return true;
 }
 
 void
-route_matcher::match_get_params(const std::string& path, params_t& params) const {
-  std::regex params_regex("[\\?&]([^=]+)=([^&]*)");
-  std::smatch sm;
+route_matcher::match_get_params(const std::string& sPath, params_t& mapParams) const {
+  std::regex regexParams("[\\?&]([^=]+)=([^&]*)");
+  std::smatch smatchData;
 
-  auto params_it  = std::sregex_iterator(path.cbegin(), path.cend(), params_regex);
-  auto params_end = std::sregex_iterator();
+  auto posMatched       = std::sregex_iterator(sPath.cbegin(), sPath.cend(), regexParams);
+  auto const& posEnd    = std::sregex_iterator();
 
-  while (params_it != params_end) {
-    auto param = params_it->str();
+  while (posMatched != posEnd) {
+    auto sParam = posMatched->str();
 
-    if (!std::regex_match(param, sm, params_regex))
+    if (!std::regex_match(sParam, smatchData, regexParams))
       continue;
 
     //! sm is [?key1=val1, key1, val1]
-    params[sm[1]] = sm[2];
+    mapParams[smatchData[1]] = smatchData[2];
 
-    ++params_it;
+    ++posMatched;
   }
 }
 

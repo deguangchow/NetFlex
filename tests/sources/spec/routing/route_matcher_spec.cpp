@@ -37,12 +37,12 @@ public:
   //! getters, mostly for testing purpose
   const std::string&
   get_match_regex_str(void) const {
-    return m_match_regex_str;
+    return m_strMatchRegex;
   }
 
   const std::vector<std::string>&
   get_url_params(void) const {
-    return m_url_params;
+    return m_vctURLParams;
   }
 
   //! build matching regex

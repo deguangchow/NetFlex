@@ -86,22 +86,22 @@ private:
   //!
   //! http method of the route
   //!
-  http::method m_method;
+  http::method          m_eHttpMethod;
 
   //!
   //! path of the route
   //!
-  std::string m_path;
+  std::string           m_sPath;
 
   //!
   //! callback to be called on match/dispatch
   //!
-  route_callback_t m_callback;
+  route_callback_t      m_callbackRoute;
 
   //!
   //! used to match a route with a requested path
   //!
-  route_matcher m_matcher;
+  route_matcher         m_routeMatcher;
 };
 
 } // namespace routing

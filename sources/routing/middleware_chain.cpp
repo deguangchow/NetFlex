@@ -32,10 +32,10 @@ namespace routing {
 //!
 middleware_chain::middleware_chain(const std::list<middleware_t>& middlewares, http::request& request,
     http::response& response)
-: m_middlewares(middlewares)
-, m_request(request)
-, m_response(response)
-, m_current_middleware(m_middlewares.begin()) {}
+: m_lstMiddlewares(middlewares)
+, m_httpRequest(request)
+, m_httpResponse(response)
+, m_posCurrentMiddleware(m_lstMiddlewares.begin()) {}
 
 
 //!
@@ -44,15 +44,15 @@ middleware_chain::middleware_chain(const std::list<middleware_t>& middlewares, h
 void
 middleware_chain::proceed(void) {
   //! nothing anymore to proceed
-  if (m_current_middleware == m_middlewares.end())
+  if (m_posCurrentMiddleware == m_lstMiddlewares.end())
     return;
 
   //! we increment the index right now because the next middleware will call .proceed before returning
   //! so we need to do it beforehand if we do not want to execute the same middleware over and over again
-  ++m_current_middleware;
+  ++m_posCurrentMiddleware;
 
   //! execute middleware
-  (*std::prev(m_current_middleware))(*this, m_request, m_response);
+  (*std::prev(m_posCurrentMiddleware))(*this, m_httpRequest, m_httpResponse);
 }
 
 } // namespace routing

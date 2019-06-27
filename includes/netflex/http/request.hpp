@@ -191,42 +191,42 @@ private:
   //!
   //! request http verb
   //!
-  method m_method;
+  method            m_eHttpMethod;
 
   //!
   //! request http verb (raw string)
   //!
-  std::string m_raw_method;
+  std::string       m_sHttpMethod;
 
   //!
   //! status line target
   //!
-  std::string m_target;
+  std::string       m_sTarget;
 
   //!
   //! requested http version
   //!
-  std::string m_http_version;
+  std::string       m_sHttpVersion;
 
   //!
   //! headers
   //!
-  header_list_t m_headers;
+  header_list_t     m_mapHeaders;
 
   //!
   //! requested path
   //!
-  std::string m_path;
+  std::string       m_sPath;
 
   //!
   //! request params
   //!
-  routing::params_t m_params;
+  routing::params_t m_mapParams;
 
   //!
   //! request body
   //!
-  std::string m_body;
+  std::string       m_sBody;
 };
 
 } // namespace http
