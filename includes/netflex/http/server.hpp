@@ -38,7 +38,8 @@ namespace http {
 
 //!
 //! http server itself
-//! listen for incoming connection, detect requests, parse them and dispatch them before sending the appropriate responses
+//! listen for incoming connection, detect requests, parse them and dispatch them before
+//! sending the appropriate responses
 //!
 class server {
 public:

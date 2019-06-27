@@ -61,7 +61,8 @@ std::string header_list_to_http_packet(const http::header_list_t& headers);
 //! \reason_phrase reason phrase associated to the status code returned by the http server
 //! \return formatted string ready to be used for an http response
 //!
-std::string status_line_to_http_packet(const std::string& http_version, unsigned int status_code, const std::string& reason_phrase);
+std::string status_line_to_http_packet(const std::string& http_version, unsigned int status_code,
+    const std::string& reason_phrase);
 
 } // namespace misc
 

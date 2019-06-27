@@ -32,7 +32,8 @@ namespace http {
 //!
 server::server(void)
 //! insert first middleware (dispatch)
-: m_middlewares({1, std::bind(&server::dispatch, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)}) {}
+: m_middlewares({1, std::bind(&server::dispatch, this, std::placeholders::_1, std::placeholders::_2,
+    std::placeholders::_3)}) {}
 
 
 //!
@@ -122,7 +123,8 @@ server::on_connection_received(const std::shared_ptr<tacopie::tcp_client>& clien
   //! start listening for incoming requests
   client_iterator_t http_client = std::prev(m_clients.end());
   http_client->set_disconnection_handler(std::bind(&server::on_client_disconnected, this, http_client));
-  http_client->set_request_handler(std::bind(&server::on_http_request_received, this, std::placeholders::_1, std::placeholders::_2, http_client));
+  http_client->set_request_handler(std::bind(&server::on_http_request_received, this, std::placeholders::_1,
+      std::placeholders::_2, http_client));
 
   __NETFLEX_LOG(info, __NETFLEX_CLIENT_LOG_PREFIX(client->get_host(), client->get_port()) + "connection accepted");
 
@@ -143,7 +145,8 @@ server::on_http_request_received(bool success, request& request, client_iterator
     return;
   }
 
-  __NETFLEX_LOG(info, __NETFLEX_CLIENT_LOG_PREFIX(client->get_host(), client->get_port()) + "receive request " + request.to_string());
+  __NETFLEX_LOG(info, __NETFLEX_CLIENT_LOG_PREFIX(client->get_host(), client->get_port()) + "receive request " +
+      request.to_string());
 
   http::response response;
   //! status line

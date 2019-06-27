@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5DBB71A2-EC63-3643-B113-AE34393AD9E3}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>tacopie</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\github\NetFlex\msvc15\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">tacopie.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">tacopie</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">F:\github\NetFlex\msvc15\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">tacopie.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">tacopie</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">F:\github\NetFlex\msvc15\lib\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">tacopie.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">tacopie</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">F:\github\NetFlex\msvc15\lib\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">tacopie.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">tacopie</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>F:\github\NetFlex\msvc15\lib\Debug\tacopie.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+      <ProgramDataBaseFileName>F:\github\NetFlex\msvc15\lib\Release\tacopie.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+      <ProgramDataBaseFileName>F:\github\NetFlex\msvc15\lib\MinSizeRel\tacopie.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>F:\github\NetFlex\msvc15\lib\RelWithDebInfo\tacopie.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\github\NetFlex\includes;F:\github\NetFlex\deps\include;F:\github\NetFlex\tacopie\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\github\NetFlex\tacopie\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule F:/github/NetFlex/tacopie/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -HF:/github/NetFlex -BF:/github/NetFlex/msvc15 --check-stamp-file F:/github/NetFlex/msvc15/tacopie/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:/github/NetFlex/tacopie/CMakeLists.txt;F:\github\NetFlex\tacopie\CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.10\Modules\ExternalProject.cmake;F:\github\NetFlex\tacopie\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\github\NetFlex\msvc15\tacopie\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule F:/github/NetFlex/tacopie/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -HF:/github/NetFlex -BF:/github/NetFlex/msvc15 --check-stamp-file F:/github/NetFlex/msvc15/tacopie/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">F:/github/NetFlex/tacopie/CMakeLists.txt;F:\github\NetFlex\tacopie\CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.10\Modules\ExternalProject.cmake;F:\github\NetFlex\tacopie\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">F:\github\NetFlex\msvc15\tacopie\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule F:/github/NetFlex/tacopie/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -HF:/github/NetFlex -BF:/github/NetFlex/msvc15 --check-stamp-file F:/github/NetFlex/msvc15/tacopie/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">F:/github/NetFlex/tacopie/CMakeLists.txt;F:\github\NetFlex\tacopie\CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.10\Modules\ExternalProject.cmake;F:\github\NetFlex\tacopie\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">F:\github\NetFlex\msvc15\tacopie\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule F:/github/NetFlex/tacopie/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -HF:/github/NetFlex -BF:/github/NetFlex/msvc15 --check-stamp-file F:/github/NetFlex/msvc15/tacopie/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">F:/github/NetFlex/tacopie/CMakeLists.txt;F:\github\NetFlex\tacopie\CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.10\Modules\ExternalProject.cmake;F:\github\NetFlex\tacopie\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">F:\github\NetFlex\msvc15\tacopie\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="F:\github\NetFlex\sources\http\client.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\http\header.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\http\method.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\http\request.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\http\response.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\http\server.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\misc\logger.cpp" >
+      <ObjectFileName>$(IntDir)/__/sources/misc/logger.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\sources\misc\output.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\header_field_parser.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\header_fields_parser.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_chuncked_parser.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_compress_parser.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_content_length_parser.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_deflate_parser.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_gzip_parser.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\message_body_parser.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\parser_iface.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\parsers_factory.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\request_parser.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\start_line_parser.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\parsing\utils.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\routing\middleware_chain.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\routing\route.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\sources\routing\route_matcher.cpp"  />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\http\client.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\http\header.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\http\method.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\http\request.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\http\response.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\http\server.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\misc\error.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\misc\logger.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\misc\output.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\header_field_parser.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\header_fields_parser.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\message_body_chuncked_parser.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\message_body_compress_parser.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\message_body_content_length_parser.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\message_body_deflate_parser.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\message_body_gzip_parser.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\message_body_parser.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\parser_iface.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\parsers_factory.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\request_parser.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\start_line_parser.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\parsing\utils.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\routing\middleware_chain.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\routing\params.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\routing\route.hpp" />
+    <ClInclude Include="F:\github\NetFlex\includes\netflex\routing\route_matcher.hpp" />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\io_service.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\tcp_client.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\tcp_server.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\common\tcp_socket.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\utils\error.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\utils\logger.cpp" >
+      <ObjectFileName>$(IntDir)/sources/utils/logger.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\utils\thread_pool.cpp"  />
+    <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\network\io_service.hpp" />
+    <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\network\self_pipe.hpp" />
+    <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\network\tcp_client.hpp" />
+    <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\network\tcp_server.hpp" />
+    <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\network\tcp_socket.hpp" />
+    <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\utils\error.hpp" />
+    <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\utils\logger.hpp" />
+    <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\utils\thread_pool.hpp" />
+    <ClInclude Include="F:\github\NetFlex\tacopie\includes\tacopie\utils\typedefs.hpp" />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\windows\windows_self_pipe.cpp"  />
+    <ClCompile Include="F:\github\NetFlex\tacopie\sources\network\windows\windows_tcp_socket.cpp"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="F:\github\NetFlex\msvc15\ZERO_CHECK.vcxproj">
+      <Project>{322481DE-5D6E-3270-BD7D-1A9DF9718471}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

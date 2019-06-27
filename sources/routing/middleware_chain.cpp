@@ -30,7 +30,8 @@ namespace routing {
 //!
 //! ctor & dtor
 //!
-middleware_chain::middleware_chain(const std::list<middleware_t>& middlewares, http::request& request, http::response& response)
+middleware_chain::middleware_chain(const std::list<middleware_t>& middlewares, http::request& request,
+    http::response& response)
 : m_middlewares(middlewares)
 , m_request(request)
 , m_response(response)

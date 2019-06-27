@@ -47,7 +47,7 @@ method_from_string(const std::string& str) {
     return method::PATCH;
 
   if (str == "DELETE")
-    return method::DELETE;
+    return method::DELETE_;
 
   if (str == "TRACE")
     return method::TRACE;
@@ -79,7 +79,7 @@ method_to_string(method m) {
   case method::PATCH:
     return "PATCH";
 
-  case method::DELETE:
+  case method::DELETE_:
     return "DELETE";
 
   case method::TRACE:

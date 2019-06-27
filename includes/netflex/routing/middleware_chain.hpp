@@ -50,7 +50,8 @@ public:
   //!
   //! ctor
   //!
-  //! \param middlewares middlewares to be managed by the middleware chain. middleware should be ordered from lowest level (first executed) to highest level (last to be executed)
+  //! \param middlewares middlewares to be managed by the middleware chain. middleware should be ordered from
+  //!  lowest level (first executed) to highest level (last to be executed)
   //! \param request request to be passed as parameter to each middleware
   //! \param response response to be passed as parameter to each middleware
   //!

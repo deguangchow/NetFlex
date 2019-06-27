@@ -38,7 +38,7 @@ enum class method {
   POST,
   PUT,
   PATCH,
-  DELETE,
+  DELETE_,
   TRACE,
   CONNECT,
   unknown

@@ -6,6 +6,10 @@
 *.lo
 *.o
 *.obj
+*.log
+*.suo
+*.db
+*.opendb
 
 # Precompiled Headers
 *.gch
@@ -37,3 +41,10 @@ build
 # Deps
 deps
 
+# CMake
+CMakeCache.txt
+CMakeFiles/
+Release/
+Debug/
+Makefile
+*.cmake

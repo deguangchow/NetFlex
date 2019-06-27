@@ -41,7 +41,8 @@ public:
   //!
   //! ctor
   //!
-  //! \param path path associated to the route. It will be used to build an regex representation of the route to be used for matching
+  //! \param path path associated to the route. It will be used to build an regex representation of the route
+  //! to be used for matching
   //!
   explicit route_matcher(const std::string& path);
 

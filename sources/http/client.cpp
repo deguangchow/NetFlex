@@ -95,23 +95,27 @@ client::call_request_received_callback(bool success, request& request) {
 //!
 void
 client::on_async_read_result(tacopie::tcp_client::read_result& result) {
-  __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) + "async_read result");
+  __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) +
+      "async_read result");
 
   //! if request has failed, simply return
   //! disconnection callback will be called by the tcp_client right after
   if (!result.success) {
-    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) + "async_read failure");
+    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) +
+        "async_read failure");
     return;
   }
 
   //! try to parse request
   //! in case of failure, notify that the request could not be parsed and stop reading bytes from socket
   try {
-    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) + "attempts to parse request");
+    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) +
+        "attempts to parse request");
     m_parser << std::string(result.buffer.begin(), result.buffer.end());
   }
   catch (const netflex_error&) {
-    __NETFLEX_LOG(error, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) + "could not parse request (invalid format), disconnecting");
+    __NETFLEX_LOG(error, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) +
+        "could not parse request (invalid format), disconnecting");
 
     request partial_request = m_parser.get_currently_parsed_request();
     call_request_received_callback(false, partial_request);
@@ -121,7 +125,8 @@ client::on_async_read_result(tacopie::tcp_client::read_result& result) {
 
   //! retrieve available requests and forward them
   while (m_parser.request_available()) {
-    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) + "request fully parsed");
+    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) +
+        "request fully parsed");
 
     request fully_parsed_request = m_parser.get_front();
     call_request_received_callback(true, fully_parsed_request);

@@ -42,8 +42,8 @@ request_parser&
 request_parser::operator<<(const std::string& data) {
   m_buffer += data;
 
-  while (build_request())
-    ;
+  while (build_request()) {
+  }
 
   return *this;
 }

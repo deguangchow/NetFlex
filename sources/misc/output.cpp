@@ -65,7 +65,8 @@ header_list_to_http_packet(const http::header_list_t& headers) {
 }
 
 std::string
-status_line_to_http_packet(const std::string& http_version, unsigned int status_code, const std::string& reason_phrase) {
+status_line_to_http_packet(const std::string& http_version, unsigned int status_code,
+    const std::string& reason_phrase) {
   return http_version + " " + std::to_string(status_code) + " " + reason_phrase + "\r\n";
 }
 

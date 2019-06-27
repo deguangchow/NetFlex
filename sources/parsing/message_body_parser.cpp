@@ -49,8 +49,8 @@ message_body_parser::message_body_parser(http::request& request)
 //!
 parser_iface&
 message_body_parser::operator<<(std::string& str) {
-  while (!is_done() && parse_body(str))
-    ;
+  while (!is_done() && parse_body(str)) {
+  }
 
   return *this;
 }
@@ -106,17 +106,13 @@ message_body_parser::build_states_from_request_headers(void) const {
 
       if (encoding == "chuncked") {
         states.push_back(state::chuncked);
-      }
-      else if (encoding == "compress" || encoding == "x-compress") {
+      } else if (encoding == "compress" || encoding == "x-compress") {
         states.push_back(state::compress);
-      }
-      else if (encoding == "deflate") {
+      } else if (encoding == "deflate") {
         states.push_back(state::deflate);
-      }
-      else if (encoding == "gzip" || encoding == "x-gzip") {
+      } else if (encoding == "gzip" || encoding == "x-gzip") {
         states.push_back(state::gzip);
-      }
-      else {
+      } else {
         __NETFLEX_THROW(error, "unsupported transfer encoding: " + encoding);
       }
     }

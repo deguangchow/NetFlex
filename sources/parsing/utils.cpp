@@ -101,8 +101,7 @@ consume_word(std::string& buffer, char ending) {
 
   if (i == buffer.size()) {
     return std::move(buffer);
-  }
-  else {
+  } else {
     std::string word = buffer.substr(0, i);
     buffer.erase(0, i);
 
@@ -120,8 +119,7 @@ consume_words(std::string& buffer) {
 
   if (i == buffer.size()) {
     return std::move(buffer);
-  }
-  else {
+  } else {
     std::string word = buffer.substr(0, i);
     buffer.erase(0, i);
 
@@ -134,7 +132,8 @@ consume_word_with_ending(std::string& buffer, char ending) {
   std::string word = consume_word(buffer, ending);
 
   if (!buffer.empty() && buffer[0] != ending)
-    __NETFLEX_THROW(error, "expected character '" + std::to_string(ending) + "', got '" + std::to_string(buffer[0]) + "'");
+    __NETFLEX_THROW(error, "expected character '" + std::to_string(ending) + "', got '" + std::to_string(buffer[0])
+        + "'");
 
   return word;
 }
@@ -221,14 +220,14 @@ trim(std::string& str) {
 void
 ltrim(std::string& str) {
   str.erase(str.begin(), std::find_if(str.begin(), str.end(), [](int ch) {
-    return !std::isspace(ch);
+    return !std::isspace(ch, std::locale());
   }));
 }
 
 void
 rtrim(std::string& str) {
   str.erase(std::find_if(str.rbegin(), str.rend(), [](int ch) {
-    return !std::isspace(ch);
+    return !std::isspace(ch, std::locale());
   })
               .base(),
     str.end());
