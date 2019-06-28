@@ -31,8 +31,8 @@ namespace parsing {
 //! ctor & dtor
 //!
 request_parser::request_parser(void)
-: m_current_stage(parsing_stage::start_line)
-, m_current_parser(create_parser(m_current_stage, m_current_request)) {}
+: m_eParsingStageCurrent(parsing_stage::start_line)
+, m_ptrParserCurrent(create_parser(m_eParsingStageCurrent, m_requestCurrent)) {}
 
 
 //!
@@ -40,7 +40,7 @@ request_parser::request_parser(void)
 //!
 request_parser&
 request_parser::operator<<(const std::string& data) {
-  m_buffer += data;
+  m_sBuffer += data;
 
   while (build_request()) {
   }
@@ -55,19 +55,19 @@ request_parser::operator<<(const std::string& data) {
 bool
 request_parser::build_request(void) {
   //! feed current parser
-  *m_current_parser << m_buffer;
+  *m_ptrParserCurrent << m_sBuffer;
 
-  if (m_current_parser->is_done()) {
+  if (m_ptrParserCurrent->is_done()) {
     //! request fully built
-    if (m_current_stage == parsing_stage::message_body) {
+    if (m_eParsingStageCurrent == parsing_stage::message_body) {
       //! store request as available
-      m_available_requests.push_back(m_current_request);
+      m_dequeAvailableRequests.push_back(m_requestCurrent);
       //! reset current request
-      m_current_request = {};
+      m_requestCurrent = {};
     }
 
     //! switch to next stage
-    m_current_parser = switch_to_next_stage(m_current_stage, m_current_request);
+    m_ptrParserCurrent = switch_to_next_stage(m_eParsingStageCurrent, m_requestCurrent);
 
     return true;
   }
@@ -89,7 +89,7 @@ request_parser::get_front(void) const {
   if (!request_available())
     __NETFLEX_THROW(error, "No available request");
 
-  return m_available_requests.front();
+  return m_dequeAvailableRequests.front();
 }
 
 void
@@ -97,7 +97,7 @@ request_parser::pop_front(void) {
   if (!request_available())
     __NETFLEX_THROW(error, "No available request");
 
-  m_available_requests.pop_front();
+  m_dequeAvailableRequests.pop_front();
 }
 
 
@@ -106,7 +106,7 @@ request_parser::pop_front(void) {
 //!
 const http::request&
 request_parser::get_currently_parsed_request(void) const {
-  return m_current_request;
+  return m_requestCurrent;
 }
 
 
@@ -115,7 +115,7 @@ request_parser::get_currently_parsed_request(void) const {
 //!
 bool
 request_parser::request_available(void) const {
-  return !m_available_requests.empty();
+  return !m_dequeAvailableRequests.empty();
 }
 
 } // namespace parsing

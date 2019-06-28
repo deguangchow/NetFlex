@@ -123,17 +123,17 @@ private:
   //!
   //! tcp connection
   //!
-  std::shared_ptr<tacopie::tcp_client> m_tcp_client;
+  std::shared_ptr<tacopie::tcp_client>  m_ptrTcpClient;
 
   //!
   //! callback to be called on new http requests
   //!
-  request_handler_t m_request_received_callback;
+  request_handler_t                     m_callbackRequestReceived;
 
   //!
   //! request parser used to parse the incoming http requests
   //!
-  parsing::request_parser m_parser;
+  parsing::request_parser               m_httpRequestParser;
 };
 
 } // namespace http

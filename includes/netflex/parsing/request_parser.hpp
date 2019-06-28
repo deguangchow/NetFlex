@@ -100,27 +100,27 @@ private:
   //!
   //! buffer
   //!
-  std::string m_buffer;
+  std::string                   m_sBuffer;
 
   //!
   //! request currently being built
   //!
-  http::request m_current_request;
+  http::request                 m_requestCurrent;
 
   //!
   //! current parsing state
   //!
-  parsing_stage m_current_stage;
+  parsing_stage                 m_eParsingStageCurrent;
 
   //!
   //! current parser
   //!
-  std::unique_ptr<parser_iface> m_current_parser;
+  std::unique_ptr<parser_iface> m_ptrParserCurrent;
 
   //!
   //! parsed requests, ready for dequeing
   //!
-  std::deque<http::request> m_available_requests;
+  std::deque<http::request>     m_dequeAvailableRequests;
 };
 
 } // namespace parsing

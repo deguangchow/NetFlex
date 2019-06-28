@@ -32,8 +32,8 @@ namespace http {
 //! ctor & dtor
 //!
 client::client(const std::shared_ptr<tacopie::tcp_client>& tcp_client)
-: m_tcp_client(tcp_client)
-, m_request_received_callback(nullptr) {}
+: m_ptrTcpClient(tcp_client)
+, m_callbackRequestReceived(nullptr) {}
 
 
 //!
@@ -41,12 +41,12 @@ client::client(const std::shared_ptr<tacopie::tcp_client>& tcp_client)
 //!
 const std::string&
 client::get_host(void) const {
-  return m_tcp_client->get_host();
+  return m_ptrTcpClient->get_host();
 }
 
 std::uint32_t
 client::get_port(void) const {
-  return m_tcp_client->get_port();
+  return m_ptrTcpClient->get_port();
 }
 
 
@@ -58,13 +58,13 @@ client::get_port(void) const {
 //!
 void
 client::set_request_handler(const request_handler_t& recv_callback) {
-  m_request_received_callback = recv_callback;
+  m_callbackRequestReceived = recv_callback;
   async_read();
 }
 
 void
 client::set_disconnection_handler(const disconnection_handler_t& disco_callback) {
-  m_tcp_client->set_on_disconnection_handler(disco_callback);
+  m_ptrTcpClient->set_on_disconnection_handler(disco_callback);
 }
 
 
@@ -75,7 +75,7 @@ void
 client::send_response(const response& response) {
   std::string http_response = response.to_http_packet();
 
-  m_tcp_client->async_write({{http_response.begin(), http_response.end()}, nullptr});
+  m_ptrTcpClient->async_write({{http_response.begin(), http_response.end()}, nullptr});
 }
 
 
@@ -84,8 +84,8 @@ client::send_response(const response& response) {
 //!
 void
 client::call_request_received_callback(bool success, request& request) {
-  if (m_request_received_callback) {
-    m_request_received_callback(success, request);
+  if (m_callbackRequestReceived) {
+    m_callbackRequestReceived(success, request);
   }
 }
 
@@ -95,13 +95,13 @@ client::call_request_received_callback(bool success, request& request) {
 //!
 void
 client::on_async_read_result(tacopie::tcp_client::read_result& result) {
-  __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) +
+  __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_ptrTcpClient->get_host(), m_ptrTcpClient->get_port()) +
       "async_read result");
 
   //! if request has failed, simply return
   //! disconnection callback will be called by the tcp_client right after
   if (!result.success) {
-    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) +
+    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_ptrTcpClient->get_host(), m_ptrTcpClient->get_port()) +
         "async_read failure");
     return;
   }
@@ -109,28 +109,28 @@ client::on_async_read_result(tacopie::tcp_client::read_result& result) {
   //! try to parse request
   //! in case of failure, notify that the request could not be parsed and stop reading bytes from socket
   try {
-    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) +
+    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_ptrTcpClient->get_host(), m_ptrTcpClient->get_port()) +
         "attempts to parse request");
-    m_parser << std::string(result.buffer.begin(), result.buffer.end());
+    m_httpRequestParser << std::string(result.buffer.begin(), result.buffer.end());
   }
   catch (const netflex_error&) {
-    __NETFLEX_LOG(error, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) +
+    __NETFLEX_LOG(error, __NETFLEX_CLIENT_LOG_PREFIX(m_ptrTcpClient->get_host(), m_ptrTcpClient->get_port()) +
         "could not parse request (invalid format), disconnecting");
 
-    request partial_request = m_parser.get_currently_parsed_request();
+    request partial_request = m_httpRequestParser.get_currently_parsed_request();
     call_request_received_callback(false, partial_request);
 
     return;
   }
 
   //! retrieve available requests and forward them
-  while (m_parser.request_available()) {
-    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_tcp_client->get_host(), m_tcp_client->get_port()) +
+  while (m_httpRequestParser.request_available()) {
+    __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(m_ptrTcpClient->get_host(), m_ptrTcpClient->get_port()) +
         "request fully parsed");
 
-    request fully_parsed_request = m_parser.get_front();
+    request fully_parsed_request = m_httpRequestParser.get_front();
     call_request_received_callback(true, fully_parsed_request);
-    m_parser.pop_front();
+    m_httpRequestParser.pop_front();
   }
 
   //! Keep reading
@@ -144,7 +144,7 @@ client::on_async_read_result(tacopie::tcp_client::read_result& result) {
 void
 client::async_read(void) {
   try {
-    m_tcp_client->async_read({1024, std::bind(&client::on_async_read_result, this, std::placeholders::_1)});
+    m_ptrTcpClient->async_read({1024, std::bind(&client::on_async_read_result, this, std::placeholders::_1)});
   }
   catch (const std::exception&) {
     //! Client disconnected in the meantime

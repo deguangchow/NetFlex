@@ -124,27 +124,27 @@ private:
   //!
   //! parsed method
   //!
-  std::string m_method;
+  std::string   m_sMethod;
 
   //!
   //! parsed target
   //!
-  std::string m_target;
+  std::string   m_sTarget;
 
   //!
   //! parsed http version
   //!
-  std::string m_http_version;
+  std::string   m_sHttpVersion;
 
   //!
   //! keep track of last whitespace character erased in fetch trailing
   //!
-  char m_last_consumed_whitespace;
+  char          m_cLastConsumedWhitespace;
 
   //!
   //! current state
   //!
-  state m_state;
+  state         m_eState;
 };
 
 } // namespace parsing

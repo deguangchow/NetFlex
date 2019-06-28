@@ -114,11 +114,12 @@ server::stop(void) {
 //! tacopie::tcp_server callback
 //!
 bool
-server::on_connection_received(const std::shared_ptr<tacopie::tcp_client>& client) {
-  __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(client->get_host(), client->get_port()) + "receiving connection");
+server::on_connection_received(const std::shared_ptr<tacopie::tcp_client>& ptrTcpClient) {
+  __NETFLEX_LOG(debug, __NETFLEX_CLIENT_LOG_PREFIX(ptrTcpClient->get_host(), ptrTcpClient->get_port()) +
+      "receiving connection");
 
   //! store client
-  m_lstClients.emplace_back(client);
+  m_lstClients.emplace_back(ptrTcpClient);
 
   //! start listening for incoming requests
   client_iterator_t http_client = std::prev(m_lstClients.end());
@@ -126,7 +127,8 @@ server::on_connection_received(const std::shared_ptr<tacopie::tcp_client>& clien
   http_client->set_request_handler(std::bind(&server::on_http_request_received, this, std::placeholders::_1,
       std::placeholders::_2, http_client));
 
-  __NETFLEX_LOG(info, __NETFLEX_CLIENT_LOG_PREFIX(client->get_host(), client->get_port()) + "connection accepted");
+  __NETFLEX_LOG(info, __NETFLEX_CLIENT_LOG_PREFIX(ptrTcpClient->get_host(), ptrTcpClient->get_port()) +
+      "connection accepted");
 
   //! mark connection as handled by ourselves
   return true;

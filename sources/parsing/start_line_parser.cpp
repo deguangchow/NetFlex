@@ -33,8 +33,8 @@ namespace parsing {
 //!
 start_line_parser::start_line_parser(http::request& request)
 : parser_iface(request)
-, m_last_consumed_whitespace(0)
-, m_state(state::method) {}
+, m_cLastConsumedWhitespace(0)
+, m_eState(state::method) {}
 
 
 //!
@@ -62,7 +62,7 @@ start_line_parser::operator<<(std::string& buffer) {
 
 bool
 start_line_parser::is_done(void) const {
-  return m_state == state::done;
+  return m_eState == state::done;
 }
 
 
@@ -71,12 +71,12 @@ start_line_parser::is_done(void) const {
 //!
 bool
 start_line_parser::fetch_method(std::string& buffer) {
-  if (m_state > state::method)
+  if (m_eState > state::method)
     return true;
 
-  if (utils::parse_next_word(buffer, m_method)) {
+  if (utils::parse_next_word(buffer, m_sMethod)) {
     //! we can process to next state
-    m_state = state::target;
+    m_eState = state::target;
     return true;
   }
 
@@ -85,12 +85,12 @@ start_line_parser::fetch_method(std::string& buffer) {
 
 bool
 start_line_parser::fetch_target(std::string& buffer) {
-  if (m_state > state::target)
+  if (m_eState > state::target)
     return true;
 
-  if (utils::parse_next_word(buffer, m_target)) {
+  if (utils::parse_next_word(buffer, m_sTarget)) {
     //! we can process to next state
-    m_state = state::http_version;
+    m_eState = state::http_version;
     return true;
   }
 
@@ -99,12 +99,12 @@ start_line_parser::fetch_target(std::string& buffer) {
 
 bool
 start_line_parser::fetch_http_version(std::string& buffer) {
-  if (m_state > state::http_version)
+  if (m_eState > state::http_version)
     return true;
 
-  if (utils::parse_next_word(buffer, m_http_version)) {
+  if (utils::parse_next_word(buffer, m_sHttpVersion)) {
     //! we can process to next state
-    m_state = state::trailing;
+    m_eState = state::trailing;
     return true;
   }
 
@@ -113,12 +113,12 @@ start_line_parser::fetch_http_version(std::string& buffer) {
 
 bool
 start_line_parser::fetch_trailing(std::string& buffer) {
-  if (m_state > state::trailing)
+  if (m_eState > state::trailing)
     return true;
 
   //! dismiss preceding whitespaces
   if (!buffer.empty() && utils::is_whitespace_delimiter(buffer[0]))
-    m_last_consumed_whitespace = utils::consume_whitespaces(buffer);
+    m_cLastConsumedWhitespace = utils::consume_whitespaces(buffer);
 
   //! if buffer has no character, then it can't have the trailing LF character
   if (buffer.empty())
@@ -127,17 +127,17 @@ start_line_parser::fetch_trailing(std::string& buffer) {
   //! if we are here, it is because we consumed all whitespaces (including CR)
   //! and that there are still bytes in the buffer
   //! so, if the first remaining byte is not LF, then the start-line is not ending correctly
-  if (m_last_consumed_whitespace == utils::CR && buffer[0] != utils::LF)
+  if (m_cLastConsumedWhitespace == utils::CR && buffer[0] != utils::LF)
     __NETFLEX_THROW(error, "Invalid start-line");
 
   //! consume LF
   buffer.erase(0, 1);
   //! set parse line information
-  m_request.set_raw_method(m_method);
-  m_request.set_target(m_target);
-  m_request.set_http_version(m_http_version);
+  m_request.set_raw_method(m_sMethod);
+  m_request.set_target(m_sTarget);
+  m_request.set_http_version(m_sHttpVersion);
   //! process to next step
-  m_state = state::done;
+  m_eState = state::done;
   return true;
 }
 
