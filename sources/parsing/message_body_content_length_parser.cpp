@@ -34,7 +34,7 @@ namespace parsing {
 //!
 message_body_content_length_parser::message_body_content_length_parser(http::request& request)
 : parser_iface(request)
-, m_content_length(fetch_content_length()) {}
+, m_uContentLength(fetch_content_length()) {}
 
 
 //!
@@ -49,7 +49,7 @@ message_body_content_length_parser::operator<<(std::string& buffer) {
 
 bool
 message_body_content_length_parser::is_done(void) const {
-  return m_body.length() == m_content_length;
+  return m_sBody.length() == m_uContentLength;
 }
 
 
@@ -57,26 +57,26 @@ message_body_content_length_parser::is_done(void) const {
 //! fetch body
 //!
 void
-message_body_content_length_parser::fetch_body(std::string& buffer) {
+message_body_content_length_parser::fetch_body(std::string& sBuffer) {
   if (is_done()) {
     return;
   }
 
-  std::size_t remaining        = m_content_length - m_body.length();
-  std::size_t nb_bytes_to_read = std::min(remaining, buffer.length());
+  std::size_t uRemaining        = m_uContentLength - m_sBody.length();
+  std::size_t uNbBytesToRead    = std::min(uRemaining, sBuffer.length());
 
   //! fetch iterator to last byte to read in buffer
-  auto buffer_last_byte_it = buffer.begin();
-  std::advance(buffer_last_byte_it, nb_bytes_to_read);
+  auto posBufferLastByte        = sBuffer.begin();
+  std::advance(posBufferLastByte, uNbBytesToRead);
 
   //! fetch bytes from buffer
-  m_body.insert(m_body.end(), buffer.begin(), buffer_last_byte_it);
+  m_sBody.insert(m_sBody.end(), sBuffer.begin(), posBufferLastByte);
   //! erase bytes from buffer
-  buffer.erase(buffer.begin(), buffer_last_byte_it);
+  sBuffer.erase(sBuffer.begin(), posBufferLastByte);
 
   if (is_done()) {
     //! store body in request
-    m_request.set_body(m_body);
+    m_request.set_body(m_sBody);
   }
 }
 

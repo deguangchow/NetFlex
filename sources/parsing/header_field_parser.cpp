@@ -33,7 +33,7 @@ namespace parsing {
 //!
 header_field_parser::header_field_parser(http::request& request)
 : parser_iface(request)
-, m_state(state::field_name) {}
+, m_eState(state::field_name) {}
 
 
 //!
@@ -58,7 +58,7 @@ header_field_parser::operator<<(std::string& buffer) {
 
 bool
 header_field_parser::is_done(void) const {
-  return m_state == state::done;
+  return m_eState == state::done;
 }
 
 
@@ -67,14 +67,14 @@ header_field_parser::is_done(void) const {
 //!
 bool
 header_field_parser::fetch_field_name(std::string& buffer) {
-  if (m_state > state::field_name)
+  if (m_eState > state::field_name)
     return true;
 
   if (utils::parse_next_word_with_ending(buffer, m_header.field_name, ':')) {
     //! consume separator
     buffer.erase(0, 1);
     //! we can process to next state
-    m_state = state::field_value;
+    m_eState = state::field_value;
     return true;
   }
 
@@ -83,7 +83,7 @@ header_field_parser::fetch_field_name(std::string& buffer) {
 
 bool
 header_field_parser::fetch_field_value(std::string& buffer) {
-  if (m_state > state::field_value)
+  if (m_eState > state::field_value)
     return true;
 
   if (!m_header.field_value.empty() && !buffer.empty() && utils::is_whitespace_delimiter(buffer[0]))
@@ -91,7 +91,7 @@ header_field_parser::fetch_field_value(std::string& buffer) {
 
   if (utils::parse_words(buffer, m_header.field_value)) {
     //! we can process to next state
-    m_state = state::trailing;
+    m_eState = state::trailing;
     return true;
   }
 
@@ -101,12 +101,12 @@ header_field_parser::fetch_field_value(std::string& buffer) {
 
 bool
 header_field_parser::fetch_trailing(std::string& buffer) {
-  if (m_state > state::trailing)
+  if (m_eState > state::trailing)
     return true;
 
   //! dismiss preceding whitespaces
   if (!buffer.empty() && utils::is_whitespace_delimiter(buffer[0]))
-    m_last_consumed_whitespace = utils::consume_whitespaces(buffer);
+    m_cLastConsumedWhitespace = utils::consume_whitespaces(buffer);
 
   //! if buffer has no character, then it can't have the trailing LF character
   if (buffer.empty())
@@ -115,7 +115,7 @@ header_field_parser::fetch_trailing(std::string& buffer) {
   //! if we are here, it is because we consumed all whitespaces (including CR)
   //! and that there are still bytes in the buffer
   //! so, if the first remaining byte is not LF, then the start-line is not ending correctly
-  if (m_last_consumed_whitespace == utils::CR && buffer[0] != utils::LF)
+  if (m_cLastConsumedWhitespace == utils::CR && buffer[0] != utils::LF)
     __NETFLEX_THROW(error, "Invalid header field");
 
   //! consume LF
@@ -123,7 +123,7 @@ header_field_parser::fetch_trailing(std::string& buffer) {
   //! store header in request
   m_request.add_header(m_header);
   //! process to next step
-  m_state = state::done;
+  m_eState = state::done;
   return true;
 }
 
@@ -136,7 +136,7 @@ header_field_parser::reset(void) {
   //! reset parsed data
   m_header = http::header();
   //! reset state
-  m_state = state::field_name;
+  m_eState = state::field_name;
 }
 
 } // namespace parsing

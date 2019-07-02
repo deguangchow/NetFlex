@@ -115,17 +115,17 @@ private:
   //!
   //! parser header
   //!
-  http::header m_header;
+  http::header  m_header;
 
   //!
   //! keep track of last whitespace character erased in fetch trailing
   //!
-  char m_last_consumed_whitespace;
+  char          m_cLastConsumedWhitespace;
 
   //!
   //! current state
   //!
-  state m_state;
+  state         m_eState;
 };
 
 } // namespace parsing

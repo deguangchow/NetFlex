@@ -100,12 +100,12 @@ private:
   //!
   //! current state
   //!
-  state m_state;
+  state                 m_eState;
 
   //!
   //! parser
   //!
-  header_field_parser m_parser;
+  header_field_parser   m_headFieldParser;
 };
 
 } // namespace parsing

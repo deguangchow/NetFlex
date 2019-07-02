@@ -110,12 +110,12 @@ private:
   //!
   //! list of states to process, current state is head of list
   //!
-  std::list<state> m_states;
+  std::list<state>                  m_lstStates;
 
   //!
   //! current parser
   //!
-  std::unique_ptr<parser_iface> m_current_parser;
+  std::unique_ptr<parser_iface>     m_ptrCurrentParser;
 };
 
 } // namespace parsing

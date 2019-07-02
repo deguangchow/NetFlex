@@ -33,8 +33,8 @@ namespace parsing {
 //!
 header_fields_parser::header_fields_parser(http::request& request)
 : parser_iface(request)
-, m_state(state::empty_line)
-, m_parser(request) {}
+, m_eState(state::empty_line)
+, m_headFieldParser(request) {}
 
 
 //!
@@ -60,7 +60,7 @@ header_fields_parser::operator<<(std::string& buffer) {
 
 bool
 header_fields_parser::is_done(void) const {
-  return m_state == state::done;
+  return m_eState == state::done;
 }
 
 
@@ -69,7 +69,7 @@ header_fields_parser::is_done(void) const {
 //!
 bool
 header_fields_parser::fetch_empty_line(std::string& buffer) {
-  if (m_state > state::empty_line)
+  if (m_eState > state::empty_line)
     return true;
 
   //! if we do not have enough bytes, no point to check for CRLF, we need to wait for more bytes
@@ -78,7 +78,7 @@ header_fields_parser::fetch_empty_line(std::string& buffer) {
 
   //! if we got crlf, then we have no more headers to parse and can switch to done state
   //! otherwise, he still have headers to parse and need to switch in header_field state
-  m_state = utils::consume_crlf(buffer) ? state::done : state::header_field;
+  m_eState = utils::consume_crlf(buffer) ? state::done : state::header_field;
 
   //! return true in either case
   //! true only means we had enough bytes to make a decision
@@ -88,20 +88,20 @@ header_fields_parser::fetch_empty_line(std::string& buffer) {
 
 bool
 header_fields_parser::fetch_header(std::string& buffer) {
-  if (m_state > state::header_field)
+  if (m_eState > state::header_field)
     return true;
 
   //! feed parser and try to build header
-  m_parser << buffer;
+  m_headFieldParser << buffer;
 
-  if (!m_parser.is_done())
+  if (!m_headFieldParser.is_done())
     return false;
 
   //! reset parser for reuse
-  m_parser.reset();
+  m_headFieldParser.reset();
 
   //! try to find empty line
-  m_state = state::empty_line;
+  m_eState = state::empty_line;
 
   return true;
 }

@@ -85,12 +85,12 @@ private:
   //!
   //! content length
   //!
-  unsigned int m_content_length;
+  unsigned int  m_uContentLength;
 
   //!
   //! body
   //!
-  std::string m_body;
+  std::string   m_sBody;
 };
 
 } // namespace parsing

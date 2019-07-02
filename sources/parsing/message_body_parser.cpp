@@ -40,8 +40,8 @@ namespace parsing {
 //!
 message_body_parser::message_body_parser(http::request& request)
 : parser_iface(request)
-, m_states(build_states_from_request_headers())
-, m_current_parser(create_parser_from_state(m_states.front())) {}
+, m_lstStates(build_states_from_request_headers())
+, m_ptrCurrentParser(create_parser_from_state(m_lstStates.front())) {}
 
 
 //!
@@ -57,7 +57,7 @@ message_body_parser::operator<<(std::string& str) {
 
 bool
 message_body_parser::is_done(void) const {
-  return m_states.front() == state::done;
+  return m_lstStates.front() == state::done;
 }
 
 
@@ -67,12 +67,12 @@ message_body_parser::is_done(void) const {
 bool
 message_body_parser::parse_body(std::string& str) {
   //! feed current parser
-  *m_current_parser << str;
+  *m_ptrCurrentParser << str;
 
-  if (m_current_parser->is_done()) {
+  if (m_ptrCurrentParser->is_done()) {
     //! switch to next state
-    m_states.pop_front();
-    m_current_parser = create_parser_from_state(m_states.front());
+    m_lstStates.pop_front();
+    m_ptrCurrentParser = create_parser_from_state(m_lstStates.front());
 
     return true;
   }

@@ -35,7 +35,7 @@ namespace misc {
 //! \param headers headers to format
 //! \return formatted string ready for output
 //!
-std::string printable_header_list(const http::header_list_t& headers);
+std::string printable_header_list(const http::header_list_t& mapHeaders);
 
 //!
 //! params formatting for logging

@@ -30,23 +30,23 @@ namespace misc {
 //! logging
 //!
 std::string
-printable_header_list(const http::header_list_t& headers) {
-  std::string headers_str;
+printable_header_list(const http::header_list_t& mapHeaders) {
+  std::string sHeaders;
 
-  for (const auto& header : headers)
-    headers_str += "[" + header.first + "]=" + header.second + " ";
+  for (const auto& header : mapHeaders)
+    sHeaders += "[" + header.first + "]=" + header.second + " ";
 
-  return headers_str;
+  return sHeaders;
 }
 
 std::string
-printable_params_list(const routing::params_t& params) {
-  std::string params_str;
+printable_params_list(const routing::params_t& mapParams) {
+  std::string sParams;
 
-  for (const auto& param : params)
-    params_str += "[" + param.first + "]=" + param.second + " ";
+  for (const auto& param : mapParams)
+    sParams += "[" + param.first + "]=" + param.second + " ";
 
-  return params_str;
+  return sParams;
 }
 
 
@@ -54,10 +54,10 @@ printable_params_list(const routing::params_t& params) {
 //! http response formating
 //!
 std::string
-header_list_to_http_packet(const http::header_list_t& headers) {
+header_list_to_http_packet(const http::header_list_t& mapHeaders) {
   std::string headers_str;
 
-  for (const auto& header : headers)
+  for (const auto& header : mapHeaders)
     headers_str += header.first + ": " + header.second + "\r\n";
   headers_str += "\r\n";
 
@@ -65,9 +65,9 @@ header_list_to_http_packet(const http::header_list_t& headers) {
 }
 
 std::string
-status_line_to_http_packet(const std::string& http_version, unsigned int status_code,
-    const std::string& reason_phrase) {
-  return http_version + " " + std::to_string(status_code) + " " + reason_phrase + "\r\n";
+status_line_to_http_packet(const std::string& sHttpVersion, unsigned int uStatusCode,
+    const std::string& sReasonPhrase) {
+  return sHttpVersion + " " + std::to_string(uStatusCode) + " " + sReasonPhrase + "\r\n";
 }
 
 } // namespace misc

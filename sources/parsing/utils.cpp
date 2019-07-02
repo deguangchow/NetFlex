@@ -228,9 +228,7 @@ void
 rtrim(std::string& str) {
   str.erase(std::find_if(str.rbegin(), str.rend(), [](int ch) {
     return !std::isspace(ch, std::locale());
-  })
-              .base(),
-    str.end());
+  }).base(), str.end());
 }
 
 void
